@@ -1,0 +1,328 @@
+<html>
+	<head>
+	<link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	
+		<title> 
+		Find the Phoneme!
+		</title>
+		
+		
+		<style type="text/css">
+		
+/* Background Style */
+			
+			body {
+				background-image: url("geometricBackground.jpg");
+				background-size: cover;
+
+				}
+				
+			@media screen and (max-width: 1100px) {
+			
+			body {
+				background-image: none;
+				background-color: #b752ad;
+				}
+			}
+			
+			
+			
+/* Button Styling */
+			
+			.button {
+				display: block;
+				height: 50px;
+				width: 100px;
+				border: 4px dashed black;
+				border-radius: 20px; 
+				font-family: 'Fredoka One', cursive;
+				font-size: 150%;
+				background-color: #DCDCDC;
+				cursor: pointer;
+				float: left;
+				outline: none;
+				position: absolute;
+				box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+				}
+				
+			.button:hover {
+				background-color: #CFCFCF;
+				outline: none;
+			}
+			
+			.button:active {
+				transform: translateY(4px);
+				border: 4px dashed black;
+				outline: none;
+				box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+				background-color: red;
+			}
+			
+			#button1:active {
+				transform: translateY(4px);
+				border: 4px dashed black;
+				outline: none;
+				box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+				background-color: green;
+				}
+			
+			
+/* Start Button/Instruction Styling*/
+
+			#instructionDiv {
+				text-align: center;
+				margin: auto;
+				font-family: 'Dosis', sans-serif;
+				font-size: 300%;
+				font-weight: bold;
+				}
+
+			
+			#startButton {
+				height: 100px;
+				width: 100px;
+				border-radius: 50%;
+				border: black solid 4px;
+				background-color: #21E341;
+				font-family: fantasy;
+				font-size: 100%;
+				box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+				}
+			
+			#startButton:hover {
+				background-color: #1FD43D;
+				}
+			
+			#startButton:active {
+				background-color: #1FD43D;
+				transform: translateY(4px);
+				outline: none;
+				box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+				}
+			
+			
+			
+/* Counter Styling */
+			
+			#counterDiv {
+				height: 50px;
+				width: 100px;
+				margin: auto;
+				display: block;
+				font-family: 'Permanent Marker', cursive;
+				font-size: 500%;
+				text-align: center;				
+			}
+		
+		
+		
+		</style>
+	</head>
+	
+	
+	
+	<body>
+		<div id="counterDiv"></div>
+		
+		
+		<div id="instructionDiv">
+			<p>Click on the words that have the 'ch' sound in them. </p>
+			<button id="startButton">GO!</button>
+		</div>
+
+		<button class="button" id="button1"></button>
+		
+		<button class="button" id="button2"></button>
+		
+		<button class="button" id="button3"></button>
+		
+		<button class="button" id="button4"></button>
+		
+		<button class="button" id="button5"></button>
+		
+		<button class="button" id="button6"></button>
+		
+		<button class="button" id="button7"></button>
+		
+		<button class="button" id="button8"></button>
+	
+		<script>
+		
+
+
+		/* This section sets up the buttonMove function. It moves all the buttons. It initially generates a random number (between 0 and 1) 
+			and multiplies it by 300 (for the height of the screen) and 1200 (for the width of the screen). It assigns this random number 
+			for style.top, which is the position of the top of the object, and style.left, which is the position of the left edge of the object.
+
+			Edit- changed to calculate viewport height/width and then multiply by that to make the program more responsive. 
+			*/
+			
+			
+			var viewportWidth = window.innerWidth-100;
+			var viewportHeight = window.innerHeight-56;
+			
+		function buttonMove() {
+		
+			for(i=1;i<9;i++)
+			{
+				var buttonVar = document.getElementById("button" + i);
+				buttonVar.style.top = Math.floor((Math.random() * viewportHeight)) + "px";
+				buttonVar.style.left = Math.floor((Math.random() * viewportWidth)) + "px";
+			};		
+
+		}
+
+	/* This section sets up the function that finds a random TARGET phoneme word for buttonOne. The function generates a random number 
+		between 0 and 1, then multiplies it by the length of the array. Then, it uses that number to select the corresponding array
+		entry. It then inserts the word into the text of the button. */
+
+		
+		var targetWord = "";
+		var targetPhonemeArray = [	"chat",
+									"chip",
+									"chop",
+									"check",
+									"lunch",
+									"bench",
+									"punch",
+									"chin",
+									"chess",
+									"chick",
+									"pinch",
+									"chain",
+									"chapter",
+									"cheap",
+									"cheek",
+									"chicken",
+									"crunch",
+									"beach",
+									"teach",
+									];
+
+		function targetPhonemeWordChoice(arr) {
+			var targetWord = arr[Math.floor(Math.random() *arr.length)];
+				document.getElementById("button1").innerHTML = targetWord;
+				}	
+
+	/* This section sets up the function that finds a word from a different array to fill the other buttons. */
+
+		var randomWord = "";
+		var randomPhonemeArray = [	"shop",
+									"fish",
+									"shed",
+									"flash",
+									"brush",
+									"shell",
+									"sheep",
+									"crash",
+									"shin",
+									"shut",
+									"sharp",
+									"shark",
+									"sheet",
+									"shelf",
+									"cash",
+									"mash",
+									"push",
+									"mash",
+									"shock"
+									];
+		
+									
+		function randomPhonemeWordChoice(arr) {
+		 for (i=2; i<9; i++) {
+				var randomWord = arr[Math.floor(Math.random() *arr.length)];
+				document.getElementById("button" + i).innerHTML = randomWord;
+			}
+		
+		}
+		
+
+
+	/* This section contains code that sets up the click counter. countNumber is initiall set to a score of 0. When the function is called, it 
+		increments the countNumber (score) and inserts it into the counterDiv div section */
+	
+		var countNumber = 0;
+		
+		function countDisplay() {
+			
+			countNumber++;
+			
+			document.getElementById("counterDiv").innerHTML = countNumber;
+			}
+
+	/*This section sets up the starting conditions. The buttons are initially all hidden, except for the start button. On click, 
+		the start button and the instructions disappear and the game buttons appear. 
+		1- set all to hidden. 2- on click, set buttons to appear with first words and set start button/instructions to disappear. */
+
+		
+		for (i=1; i<9; i++) {
+			document.getElementById("button" + i).style.display = "none";
+			}
+		
+			
+		document.getElementById("startButton").onclick = function() {
+			for (i=1; i<9; i++) {
+				document.getElementById("button" + i).style.display = "block";
+				}
+	
+			document.getElementById("instructionDiv").style.display = "none";
+			
+			targetPhonemeWordChoice(targetPhonemeArray);
+			randomPhonemeWordChoice(randomPhonemeArray);
+			buttonMove();
+			
+			}
+		
+	
+	
+	
+	
+	
+	/* This section gives each button its own instructions for the event of being clicked. */
+			var audio = new Audio('buzzerSound.mp3');
+			var audio2 = new Audio('fartSound.mp3');
+			
+
+
+			document.getElementById("button1").onclick = function() {
+				audio2.play();
+				targetPhonemeWordChoice(targetPhonemeArray);
+				randomPhonemeWordChoice(randomPhonemeArray);
+				buttonMove();
+				countDisplay();
+			}
+			
+			
+			for (i=2; i<9; i++) {
+			 
+			document.getElementById("button" + i).onclick = function() {
+				
+				audio.play();
+			 }
+			 }
+
+		
+
+		
+		
+		/* 1- generate random number between 0 and length of array. 2- Locate that number in the array.
+		3- Take the string and insert it into a change background colour function.*/
+		
+		
+		</script>
+	
+	</body>
+
+
+
+
+
+
+
+
+</html>
