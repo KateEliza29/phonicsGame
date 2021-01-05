@@ -3,6 +3,7 @@ kateeliza29.github.io/phonicsGame
 
 ## Introduction
 Created in December 2019, this is a simple phonics game aimed at helping children to learn the 'ch' sound. 
+I built this project in order to practice working with a more complex set of JavaScript functions.
 
 ## Technologies Used
 * HTML
