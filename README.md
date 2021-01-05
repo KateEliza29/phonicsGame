@@ -19,4 +19,4 @@ If I were to take this project further I would do the following:
 * Develop a json filled with all sounds and words which could be called in, rather than using individual arrays. 
 
 ## Screenshot
-![A screenshot of the phonics game web page.](/phonicsGame.jpg)
+![A screenshot of the phonics game web page.](/phonicsGame.png)
